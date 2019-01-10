@@ -1,0 +1,37 @@
+Vérifier la superposition des cadres vidéo/images/overlay, ça fait nimp
+
+Soucis avec le framerate de la vidéo exportée.
+Vérifier si les dist fonctionnent sur d'autres ordis.
+
+
+
+
+
+
+
+BUGS :
+- Multi selection (A verifier)
+	Multi suppression
+		Quand on supprime plusieurs photos, ça en supprime une de trop sur le disque
+		//Faire les images une à une, ne commencer que lorsque la précédente est supprimée
+// - Plein écran : décalage entre image live et photos prises
+
+
+A FAIRE :
+- Ne pas permettre l'export sans spécifier de chemin
+	- Chemin par défaut sur le projet
+		- Ajouter dossier /exports
+- Clic droit sur les images : Supprimer, ouvrir dans l'explorateur.
+- Déplacer image
+- Dupliquer image
+- Avertissement lorsqu'on quitte
+
+
+A TESTER :
+- Exporter
+	Vérifier que l'export fonctionne bien sur toutes les plateformes (linux)
+
+
+
+Ne pas oublier :
+- Resize lorsqu'image vire l'image

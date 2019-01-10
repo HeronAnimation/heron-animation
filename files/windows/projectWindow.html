@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add new shot</title>
+	
+    <link type="text/css" name="theme" rel="stylesheet" href="../css/theme-dark.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+</head>
+<body style="-webkit-app-region: drag">
+	<div class="menuWindow optionmenu" style="height:251px;">
+		<span id="closeWindow" class="closeWindow" title="projectWindow" style="-webkit-app-region: no-drag">X</span>
+		<div class="menuWindow_Columns" id="newProjectWindow">
+			<div class="menuWindow_Left">
+				<h1 string="project_loadProject"></h1>
+				<div style="-webkit-app-region: no-drag"  class="loadProject" id="loadProjectFolder" >
+				</div>
+				<span class="errorMessage" id="loadProjectError"></span>
+			</div>
+			<div class="menuWindow_Right">
+				<h1 string="project_createNewProject"></h1>
+				<div class="menuWindow_Columns">
+					<div class="menuWindow_Left formLabelContainer">
+						<label for="project_locationFolder" string="project_locationFolder"></label><br />
+						<label for="project_name" string="project_name"></label>
+					</div>
+					<div class="menuWindow_Right formItemContainer">
+						<div class="styledFile" id="projectFolderDiv">
+							<span style="-webkit-app-region: no-drag"  class="chooseFolder" string="form_choose" id="folderPath" ></span>
+							<input style="-webkit-app-region: no-drag"  type="file" id="projectFolder" class="projectfolderCont">
+						</div><br />
+						<input style="-webkit-app-region: no-drag"  type="text" id="projectName" placeholder="{{project_name}}" string="project_name" maxlength="35" />
+					</div>
+				</div>
+
+				<button style="-webkit-app-region: no-drag"  string="button_create" class="button bluebutton" onClick="createNewProject();"></button>
+			</div>
+		</div>
+	</div>
+
+		
+		
+	<script type='text/javascript' src='../scripts/window.js'></script>
+	<script type='text/javascript' src='../scripts/projectWindow.js'></script>
+	
+    <script>
+//        const electron = require('electron');
+//        const {ipcRenderer} = electron;
+//        
+//        const form = document.querySelector('form');
+//        form.addEventListener('submit', submitForm);
+//        
+//        function submitForm(e){
+//            e.preventDefault();
+//            const item = document.querySelector('#item').value;
+//            ipcRenderer.send('item:add', item);
+//        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Export</title>
+	
+    <link type="text/css" name="theme" rel="stylesheet" href="../css/theme-dark.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+</head>
+<body style="-webkit-app-region: drag">
+	<div class="menuWindow optionmenu" style="height:150px;width:400px;">
+		<span id="closeWindow" class="closeWindow" title="framerateSelectionWindow" style="-webkit-app-region: no-drag">X</span>
+		
+		
+		<div class="menuWindow_Columns">
+			<div class="menuWindow_Left formLabelContainer">
+				<label for="fpsSelection" string="ui_fps"></label>
+			</div>
+			<div class="menuWindow_Right formItemContainer">
+				<span style="-webkit-app-region: no-drag" class="inputNumberDecrement" onmousedown="inputNumberDecrement('fpsSelection');">-</span><!--
+				--><input style="-webkit-app-region: no-drag" type="number" step="1" min="1" name="fpsSelection" id="fpsSelection" value="15"/><!--
+				--><span style="-webkit-app-region: no-drag" class="inputNumberIncrement" onmousedown="inputNumberIncrement('fpsSelection');">+</span>
+			</div>
+		</div>
+		<button style="-webkit-app-region: no-drag" class="button bluebutton" onClick="submitFramerate();" string="button_change"></button>
+	</div>
+		
+	<script type='text/javascript' src='../scripts/window.js'></script>
+	<script type='text/javascript' src='../scripts/form.js'></script>
+	<script type='text/javascript' src='../scripts/framerateSelectionWindow.js'></script>
+</body>
+</html>

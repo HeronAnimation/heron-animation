@@ -1,0 +1,14 @@
+/* CSS VARIABLES */
+:root {
+  --main-dark-color: #e86060; /* Background */
+  --main-lighter-color: #696969; /* Buttons, inputs */
+  --main-lighter-hover-color: #777777; /* Buttons, inputs */
+  --main-text-color: #DDDDDD; /* Text */
+  --button-color: #5c78dc; /* Button */
+  --button-color-hover: #7189e0; /* Button hover */
+  --button-border-color: #505050;
+  --menu-background-color: #4a4a4a; /* Background of the menu windows */
+  --menu-background-color-secondary: #424242;
+  --menu-background-border-color: #36658d;
+  --error-message-color:#d86767;
+}

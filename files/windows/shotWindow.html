@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add new shot</title>
+	
+    <link type="text/css" name="theme" rel="stylesheet" href="../css/theme-dark.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+</head>
+<body style="-webkit-app-region: drag">
+	<div class="menuWindow optionmenu" style="height:450px;">
+		<span id="closeWindow" class="closeWindow" title="shotWindow" style="-webkit-app-region: no-drag">X</span>
+		<h1 string="shot_createNewShot"></h1>
+		<h2 id="projectName"></h2>
+
+		<div class="menuWindow_Columns">
+			<div class="menuWindow_Left">
+				<span string="shots"></span><br />
+				<table id="shotList" style="-webkit-app-region: no-drag" class="shotTakeList"></table><br />
+				<span string="shot_new"></span><br /><span style="-webkit-app-region: no-drag" class="inputNumberDecrement" onmousedown="inputNumberDecrement('shotName');">-</span><!--
+				--><input style="-webkit-app-region: no-drag" type="number" step="1" min="1" name="shotName" id="shotName" value="1"/><!--
+				--><span style="-webkit-app-region: no-drag" class="inputNumberIncrement" onmousedown="inputNumberIncrement('shotName');">+</span>
+			</div>
+			<div class="menuWindow_Right">
+				<span string="takes"></span><br /><table id="takeList" style="-webkit-app-region: no-drag" class="shotTakeList"></table><br />
+				<span string="take_new"></span><br /><span style="-webkit-app-region: no-drag" class="inputNumberDecrement" onmousedown="inputNumberDecrement('takeName');">-</span><!--
+				--><input style="-webkit-app-region: no-drag" type="number" step="1" min="1" name="takeName" id="takeName" value="1"/><!--
+				--><span style="-webkit-app-region: no-drag" class="inputNumberIncrement" onmousedown="inputNumberIncrement('takeName');">+</span>
+			</div>
+		</div>
+		<br />
+		<button style="-webkit-app-region: no-drag" class="button bluebutton" onClick="createNewShot();" string="button_create"></button>
+
+	</div><!--
+	--><div id="takePreview" class="menuWindow" style="-webkit-app-region: no-drag;">
+		<span id="framePreview">
+			<img id="preview" width="350"/>
+			<input type="range"  style="width: 350px;"  class="rangeFramesTakeSelection" id="previewFrames" min="1" max="1" step="1">
+		</span>
+	<span id="noFramePreview" string="take_noFrame">
+	</span>
+		<br />
+		<br />
+		<br />
+		<button style="-webkit-app-region: no-drag;position:absolute;bottom: 11px;right: 150px;"  string="button_load" class="button bluebutton"  id="loadTakeButton"></button>
+	</div>
+		
+	<script type='text/javascript' src='../scripts/window.js'></script>
+	<script type='text/javascript' src='../scripts/form.js'></script>
+	<script type='text/javascript' src='../scripts/shotWindow.js'></script>
+</body>
+</html>
