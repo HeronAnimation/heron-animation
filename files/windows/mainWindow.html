@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heron Animation  (private beta)</title>
+	
+    <link type="text/css" name="theme" rel="stylesheet" href="../css/theme-dark.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+	
+	
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-76845340-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+    
+	<div id="app">
+       <div id="notOverlay">
+           <!-- Main area : viewer -->
+            <div id="viewer">
+                <div id="loadingIcon_Stream"> </div>
+				<canvas id="viewerCanvas"></canvas><!--
+                --><video id="videoStream"></video><!--
+                --><canvas id="overlaysCanvas"></canvas>
+            </div>
+
+            <!-- Side : Settings and save buttons -->
+            <div id="sidebar">
+                <button id="buttonSettings" class="roundGrayButton smallRoundbutton" onclick="openSettingsWindow();"></button>
+                <button id="buttonSave" class="roundGrayButton smallRoundbutton" onclick="openExportWindow();" disabled></button>
+                <button id="buttonOverlays" class="roundGrayButton smallRoundbutton"></button>
+            </div>
+		   
+		   <!-- Overlay menu -->
+		   <div id="overlaysMenu">
+			   <div style="text-align: center;">
+				   <button class="smallSquareButton" id="buttonThirds" onclick="toggleThirds();"></button>
+				   <button class="smallSquareButton" id="buttonCenter" onclick="toggleCenter();"></button>
+				   <button class="smallSquareButton" id="buttonMargins" onclick="toggleMargins();"></button>
+				   <button class="smallSquareButton" id="buttonLetterbox" onclick="toggleLetterbox();"></button>
+			   </div>
+			   <div style="text-align: right;">
+				   <label for="overlayOpacity" string="overlay_opacity"></label>
+				   <input id="overlayOpacity" oninput="" class="rangeInput toolbarItem popupItem" type="range" value="1" max="1" step="0.05" onChange="changeOverlaysOpacity();"/><br />
+				   <div id="overlayThirdsSettings" style="display:none;">
+					   <label for="overlayColumns" string="overlay_columns"></label>
+					   <input id="overlayColumns" oninput="" class="rangeInput toolbarItem popupItem" type="range" value="3" min="0" max="12" step="1" onChange="changeOverlaysThirds();"/><br />
+					   <label for="overlayLines" string="overlay_lines"></label>
+					   <input id="overlayLines" oninput="" class="rangeInput toolbarItem popupItem" type="range" value="3" min="0" max="12" step="1" onChange="changeOverlaysThirds();"/><br />
+				   </div>
+				   <div id="overlayLetterboxSettings" style="display:none;	margin-top: 15px;">
+					   	<label for="overlayOpacity" string="overlay_letterboxRatio" style="margin-right: 9px;"></label>
+					   <div class="styledSelect" style="width: 120px;margin-right: 10px;">
+							<select id="overlayLetterboxRatio" class="toolbarButton" onchange="changeOverlaysRatio(true)" style="position: relative;top: 18px;right: 15px;">
+								<option value="1.33">4:3</option>
+								<option value="1.78" selected>16:9</option>
+								<option value="1.85">1.85</option>
+								<option value="2.39">2.39</option>
+								<option value="other" id="letterboxOther" string="ui_other"></option>
+						   </select>
+					   </div>
+					   <div id="overlayCustomRatio" style="display:none;margin-top: 15px;">
+						   <label for="customRatio" string="overlay_letterboxRatio" style="margin-right: 9px;"></label>
+						   <input type="number" name="customRatio" id="customRatio" min="0" max="50" step="0.01" value="1.85" style="width:120px;margin-right: 10px;" onChange="changeOverlaysRatio()" onKeyUp="changeOverlaysRatio()"/>
+					   </div>
+				   </div>
+			   </div>
+		   </div>
+
+            <!-- Bottom : Timeline and buttons -->
+            <div id="bottomUI">
+            <div id="toolbar">
+                <div id="options">
+                    <div id="optionsSnapshot">
+                        <span id="optionDuplicate"></span>
+                        <br/>
+                        <span id="optionDelete"></span>
+                        <br/>
+                    </div>
+                </div>
+                <button id="menuMobile" class="toolbarButton roundGrayButton"></button>
+                <button id="moreOptions" class="toolbarButton roundGrayButton"></button>
+                <button id="difference" onclick="toggleDifferenceMode()" class="toolbarButton disabled roundGrayButton"></button>
+                <input id="onionBlending" oninput="Heron.camera.changeOnion()" class="rangeInput toolbarItem" type="range" value="0" max="1" step="0.05"/>
+<!--                <div id="onionBlending" class="toolbarItem roundGrayButton"></div>-->
+                <span id="currentFrame" class="toolbarItem " style="color: #E25353;" string='ui_live'></span>
+                <span class="toolbarItem" style="margin:0" id="sep"> / </span>
+                <span id="frameCount" class="toolbarItem">0</span>
+                <button id="take_pictures" onmousedown="Heron.camera.take()" class="roundGrayButton" disabled></button>
+                <button id="play" onclick="Heron.camera.play()" class="toolbarButton roundGrayButton" disabled></button>
+                <button id="loop" class="toolbarButton roundGrayButton disabled" onclick="toggleLoop()"></button>
+                <button id="shortPlay" class="toolbarButton roundGrayButton disabled" onclick="toggleShortPlay()"></button>
+                <span class="toolbarItem" style="margin-right:0" id="fsplabel" string='ui_fps'></span>
+                <div class="styledSelect selectFps" style="width:75px;">
+                    <select id="framerateSelection" class="toolbarButton" onchange="changeFramerate()">
+						<option value="8">8</option>
+						<option value="12">12</option>
+						<option value="15" selected>15</option>
+						<option value="17">17</option>
+						<option value="24">24</option>
+						<option value="25">25</option>
+						<option value="30">30</option>
+                        <option value="other" id="fpsOther" string="ui_other"></option>
+                    </select>
+                </div>
+                <input type="hidden" id="framerate" value="15" />
+            </div>
+            <div id="timeline">
+				<span id="timelineFrames"></span>
+                <button id="show_stream" onclick="Heron.camera.showStream()" ondrop="move(event)" ondragover="allowDrop(event)" ondragstart="drag(event)" draggable="true"></button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+	<script type='text/javascript' src='../scripts/window.js'></script>
+	<script type='text/javascript' src='../scripts/camera.js'></script>
+	<script type='text/javascript' src='../scripts/cameraSetting.js'></script>
+	<script type='text/javascript' src='../scripts/mainWindow.js'></script>
+</body>
+</html>

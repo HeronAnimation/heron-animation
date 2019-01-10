@@ -1,0 +1,54 @@
+{
+	"name": "heron-animation-beta",
+	"version": "2.0.0",
+	"description": "A stop-motion animation capture software.",
+	"main": "main.js",
+	"author": "Bruno Lefèvre",
+	"dependencies": {
+		"electron-updater": "^2.21.10",
+		"fix-path": "^2.1.0",
+		"mousetrap": "^1.6.1"
+	},
+	"devDependencies": {
+		"electron": "^1.8.2",
+		"electron-builder": "^20.19.2",
+		"electron-packager": "^10.1.1"
+	},
+	"scripts": {
+		"start": "electron .",
+		"pack": "electron-builder --dir",
+		"dist": "electron-builder -wl"
+	},
+	"build": {
+		"asar": "false",
+		"appId": "heronanimation.app",
+		"productName": "Heron Animation (beta)",
+		"copyright": "Copyright © 2018 Bruno Lefèvre",
+		"buildVersion": "2.0.0",
+		"win": {
+		"asar": "false",
+			"publish": {
+				"provider": "generic",
+				"url": "https://heronanimation.brunolefevre.net/downloads/latest/HeronAnimation-${platform}"
+			},
+			"target": [
+				{
+					"target": "nsis",
+					"arch": [
+						"x64",
+						"ia32"
+					]
+				}
+			]
+		}
+	},
+	"mac": {
+		"asar": "false",
+		"category": "public.app-category.video",
+		"target": "dmg"
+	},
+	"linux": {
+		"asar": "false",
+		"target": "AppImage"
+	}
+}

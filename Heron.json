@@ -1,0 +1,31 @@
+{
+	language: "en-US",
+	windows: ["mainWindow", "projectWindow"],
+	project: {
+		projectName:"Name",
+		projectPath: "C:\Users\Bruno\Documents\Project",
+		activeTake:1,
+		activeShot:1,
+		activeTakePath:"C:\Users\Bruno\Documents\Project\Project_001\Project_001_take_001",
+		created:timestamp,
+		updated:timestamp,
+		shots: {
+			1: {
+				shotName:"shotName",
+				shotNumber:1,
+				takes: {
+					1: {
+						takeNumber: 1,
+						fps: 15,
+						created:timestamp,
+						updated:timestamp,
+						frames: {
+							frameName: "frameName",
+							frameNumber: frameNumber
+						}
+					}
+				}
+			}
+		}
+	}
+}

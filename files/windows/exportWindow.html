@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Export</title>
+	
+    <link type="text/css" name="theme" rel="stylesheet" href="../css/theme-dark.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+</head>
+<body style="-webkit-app-region: drag">
+	<div class="menuWindow optionmenu" style="height:350px;">
+		<span id="closeWindow" class="closeWindow" title="exportWindow" style="-webkit-app-region: no-drag">X</span>
+		<h1 class="exportText"></h1>
+		<div class="menuWindow_Columns">
+			<div class="menuWindow_Left formLabelContainer">
+				<label for="saveFormat" string="form_format"></label>
+				<br />
+				<label for="saveFolder" string="form_folder"></label>
+				<br />
+				<label for="saveName" string="form_name"></label>
+				<br />
+				<div class="saveVideo"><!--
+					<label for="saveFramerate" string="form_framerate">Framerate</label>
+					<br />-->
+					<div class="ffmpeg">
+						<!--<label id="aspectRatio" string="form_aspectRatio">Aspect Ratio</label>
+						<br />-->
+					</div>
+				</div>
+			</div>
+			<div class="menuWindow_Right formItemContainer">
+				<div class="styledSelect selectFormat" style="-webkit-app-region: no-drag" >
+					<select id="saveFormat">
+						<!--<option value="images" id="textFrames" string="form_frames" selected></option>-->
+						<option value="h264" id="option264">H.264</option>
+						<option value="h265" id="option265">H.265</option>
+						<option value="prores422" id="optionprores">Apple ProRes 422 HQ</option>
+						<!--<option value="prores444" id="optionprores">Apple ProRes 444</option>-->
+						<option value="webm">Webm (VP9)</option>
+						<option value="avi" id="optionavi">AVI</option>
+					</select>
+				</div>
+				<br />
+				<div class="styledFile" id="projectFolderDiv">
+					<span style="-webkit-app-region: no-drag"  class="chooseFolder" string="form_choose" id="folderPath" ></span>
+					<input style="-webkit-app-region: no-drag"  type="file" id="saveFolder" class="projectfolderCont">
+				</div><br />
+				<div class="styledInput" style="-webkit-app-region: no-drag" >
+					<input type="text" id="saveName" />
+				</div>
+				<div class="saveVideo">
+					<!--<span style="-webkit-app-region: no-drag" class="inputNumberDecrement" onmousedown="inputNumberDecrement('saveFramerate');">-</span> <input style="-webkit-app-region: no-drag" type="number" step="1" max="60" min="1" name="framerate" id="saveFramerate" value="15"/>><span style="-webkit-app-region: no-drag" class="inputNumberIncrement" onmousedown="inputNumberIncrement('saveFramerate');">+</span>
+					<br />-->
+					<div class="inputRatio ffmpeg" style="-webkit-app-region: no-drag" >
+						<!--<input type="radio" name="aspectRatio" class="radio-custom" id="nothing" value="0" checked/>
+						<label for="nothing" id="nothingText" class="radio-custom-label" string="form_ignoreAspectRatio">Ignore aspect ratio</label><br />
+						<input type="radio" name="aspectRatio" class="radio-custom" id="crop" value="1" />
+						<label for="crop" id="cropText" class="radio-custom-label" string="form_cropToAspectRatio">Crop to aspect ratio</label>-->
+						<!--<input type="radio" name="aspectRatio" class="radio-custom saveVideo ffmpeg" id="mask" value="2"/>
+						<label for="mask" id="maskText" class="radio-custom-label saveVideo ffmpeg">Apply mask</label>-->
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<button style="-webkit-app-region: no-drag"  class="button bluebutton" id="submitExport" string="form_export" onclick="exportTake();"></button>
+	</div>
+		
+	<script type='text/javascript' src='../scripts/window.js'></script>
+	<script type='text/javascript' src='../scripts/form.js'></script>
+	<script type='text/javascript' src='../scripts/exportWindow.js'></script>
+</body>
+</html>

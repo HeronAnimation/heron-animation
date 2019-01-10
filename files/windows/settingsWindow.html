@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings</title>
+	
+    <link type="text/css" name="theme" rel="stylesheet" href="../css/theme-dark.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+</head>
+<body style="-webkit-app-region: drag">
+	<div class="menuWindow optionmenu" style="height:310px;">
+		<span id="closeWindow" class="closeWindow" title="settingsWindow" style="-webkit-app-region: no-drag">X</span>
+		
+		<div id="settingsMenu" class="panelMenu" style="-webkit-app-region: no-drag">
+			<span string="settings_general" onclick="viewPanel('general')"></span>
+			<span string="settings_about" onclick="viewPanel('about')"></span>
+		</div>
+		
+		<div id="settings_general" class="settingsPanel" style="display:inline-block">
+			<div class="menuWindow_Columns">
+				<div class="menuWindow_Left formLabelContainer">
+					<label for="settingsLanguage" string="settings_language"></label>
+					<br />
+					<label for="settingsWebcam" string="settings_webcam"></label>
+					<br />
+					<label for="settingsShortPlayValue" string="settings_shortplay"></label>
+					<br />
+
+				</div>
+				<div class="menuWindow_Right formItemContainer">
+					<div class="styledSelect selectLanguage" style="-webkit-app-region: no-drag;" >
+						<select id="settingsLanguage" onchange="setLanguage(this.value)" style="width: 195px;padding-right:0px;">
+							<option value="eo" id="eo">Esperanto</option>
+							<option value="en-US" id="en-US">English</option>
+							<option value="fr-FR" id="fr-FR">Français</option>
+						</select>
+					</div>
+					<div class="styledSelect selectWebcam" style="-webkit-app-region: no-drag;" >
+						<select id="settingsWebcam" onchange="setWebcam(this.value)" style="width: 195px;padding-right:0px;">
+							
+						</select>
+					</div><br />
+					<span style="-webkit-app-region: no-drag" class="inputNumberDecrement" onmousedown="inputNumberDecrement('shortPlayValue');">-</span><!--
+					--><input style="-webkit-app-region: no-drag" type="number" step="1" min="1" name="shortPlayValue" id="shortPlayValue" value="6" onchange="setShortPlayValue('this.value')"/><!--
+					--><span style="-webkit-app-region: no-drag" class="inputNumberIncrement" onmousedown="inputNumberIncrement('shortPlayValue');">+</span>
+				</div>
+			</div>
+		</div>
+		
+		<div id="settings_about" class="settingsPanel">
+			<span string="settings_about_text"></span>
+		</div>
+	</div>
+		
+	<script type='text/javascript' src='../scripts/window.js'></script>
+	<script type='text/javascript' src='../scripts/form.js'></script>
+	<script type='text/javascript' src='../scripts/settingsWindow.js'></script>
+</body>
+</html>
