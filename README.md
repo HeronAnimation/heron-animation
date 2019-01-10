@@ -12,3 +12,4 @@ Heron Animation is stopmotion animation app made to be simple and intuitive whil
 
 ## Building
 1. `yarn add electron-builder --dev`
+2. `yarn dist`
