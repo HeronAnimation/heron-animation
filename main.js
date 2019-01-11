@@ -383,13 +383,6 @@ function buildMenu() {
 					}
 				},
 				{
-					label: 'ExportProgress',
-					accelerator: process.platform == 'darwin' ? 'Shift+E' : 'Shift+E',
-					click() {
-						openProgressWindow();
-					}
-				},
-				{
 					label: Heron.strings['menu_deletePhoto'],
 					click() {
 						mainWindow.webContents.send('item:clear');
@@ -426,7 +419,7 @@ function buildMenu() {
 					}
 				}
 			]
-		},
+		}/*,
 		{
 			label: Heron.strings['menu_themes'],
 			submenu: [
@@ -443,7 +436,7 @@ function buildMenu() {
 					}
 				}
 			]
-		}
+		}*/
 	];
 	
 	
@@ -452,6 +445,7 @@ function buildMenu() {
 		mainMenuTemplate.unshift({});
 	}
 	// Dev tools
+	/*
 	if(process.env.NODE_ENV !== 'production'){
 		mainMenuTemplate.push({
 			label: 'DevTools',
@@ -468,7 +462,7 @@ function buildMenu() {
 				}
 			]
 		})
-	}
+	}*/
 
 
 	const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
@@ -763,6 +757,14 @@ function saveJson() {
 ipcMain.on('take:export',function(e, options) {
 	exportWindow.close();
 	openProgressWindow();
+	
+	if(options.folder=='' || options.folder==undefined) {
+		options.folder = Heron.project.projectPath;
+	}
+	if(options.name=='' || options.name==undefined) {
+		options.name = Heron.project.projectName;
+	}
+	
 	progressWindow.webContents.on('did-finish-load', function() {
 		
 		let dataToSend = {};
@@ -812,7 +814,7 @@ ipcMain.on('take:export',function(e, options) {
 
 		args.push('-i', sourcePath);
 
-		const bitRate = '2.5M';// Set according to the picture size
+		const bitRate = '2.5M';// We have to set this according to the picture size
 
 		let nullPath = '/dev/null';
 		let commandDelimiter = '\\';
@@ -970,7 +972,7 @@ ipcMain.on('take:export',function(e, options) {
 					let returnedValue = data.toString();
 					returnedValue = returnedValue.split(' ');
 					if(returnedValue[0]=='frame=') {
-			//			console.log(returnedValue[2]);
+						console.log(returnedValue[2]);
 
 						let value;
 						if(process.platform=='darwin' || returnedValue[2]=='') value = returnedValue[3];
@@ -989,13 +991,13 @@ ipcMain.on('take:export',function(e, options) {
 				  console.log('child2 process exited with ' +
 							  `code ${code} and signal ${signal}`); // signal = null = pas d'erreur
 					if(signal==null) {
-//						progressWindow.close();
+						progressWindow.close();
 					}
 					else  progressWindow.webContents.send('error', signal);
 				});
 			}
 			else {
-//				progressWindow.close(); // If no second pass, we can close now
+				progressWindow.close(); // If no second pass, we can close now
 			}
 		});
 	});

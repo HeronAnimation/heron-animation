@@ -1,9 +1,9 @@
 /* CSS VARIABLES */
 :root {
-  --main-dark-color: #e86060; /* Background */
-  --main-lighter-color: #696969; /* Buttons, inputs */
+  --main-dark-color: #f8f8f8; /* Background */
+  --main-lighter-color: #747474; /* Buttons, inputs */
   --main-lighter-hover-color: #777777; /* Buttons, inputs */
-  --main-text-color: #DDDDDD; /* Text */
+  --main-text-color: #5f5f5f; /* Text */
   --button-color: #5c78dc; /* Button */
   --button-color-hover: #7189e0; /* Button hover */
   --button-border-color: #505050;
