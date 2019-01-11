@@ -4,7 +4,7 @@ function listVideoInputs() {
 	navigator.mediaDevices.enumerateDevices().then(function (devices) {
 		devices.forEach(function (device) {
 
-			if (device.kind == "videoinput") { // Only video ; nur videaj
+			if (device.kind == 'videoinput') { // Only video ; nur videaj
 				videoDevices.push(device);
 			}
 		});
@@ -47,12 +47,12 @@ function selectVideoInput(videoInputId, callback) {
         
             // When the video has started, continue : adapt the player ;
             // Kiam la video ekis, dauxrigu : adaptu la legilon
-            videoElement.addEventListener("playing", function () {
+            videoElement.addEventListener('playing', function () {
                 callback(videoInputId);
             });
         })
         .catch(function (err) {
-            console.error("An error occured!");
+            console.error('An error occured!');
             console.error(err);
         });
 }
@@ -88,50 +88,56 @@ function scaleViewer() {
     const viewer = document.getElementById('viewerCanvas');
     const overlays = document.getElementById('overlaysCanvas');
     
-//	console.log(videoHeight, videoWidth);
 	
     // Scales the video ; Ajxustas la grandeco de la video
-//    if (videoHeight < scaledVideoHeight) {
-//        let videoScaleRatio = scaledVideoHeight / videoHeight;
-//    } else {
-//        let videoScaleRatio = scaledVideoHeight / videoHeight;
-//    }
 	let videoScaleRatio = scaledVideoHeight / videoHeight;
     if(videoScaleRatio<1)
     {
-        videoElement.style.transformOrigin = "left top";
-        viewer.style.transformOrigin = "left top";
-        overlays.style.transformOrigin = "left top";
+        videoElement.style.transformOrigin = 'left top';
+        viewer.style.transformOrigin = 'left top';
+        overlays.style.transformOrigin = 'left top';
     }
     else {
-        videoElement.style.transformOrigin = "top";
-        viewer.style.transformOrigin = "left top";
-        overlays.style.transformOrigin = "left top";
+        videoElement.style.transformOrigin = 'top';
+        viewer.style.transformOrigin = 'left top';
+        overlays.style.transformOrigin = 'left top';
     }
-    videoElement.style.transform = "scale(" + videoScaleRatio + ")";
-	videoElement.style.position = "relative";
-//	videoElement.style.bottom = videoHeight+"px";
-    viewer.style.transform = "scale(" + videoScaleRatio + ")";
-    overlays.style.transform = "scale(" + videoScaleRatio + ")";
-//    viewer.style.top = "-"+(videoHeight+5)+"px";
+    videoElement.style.transform = 'scale(' + videoScaleRatio + ')';
+	videoElement.style.left = ((bounds.width-(videoWidth*videoScaleRatio))/2)-7+'px';
+	
+	
+    viewer.style.transform = 'scale(' + videoScaleRatio + ')';
+	viewer.style.left = ((bounds.width-(videoWidth*videoScaleRatio))/2)-7+'px';
+    overlays.style.transform = 'scale(' + videoScaleRatio + ')';
+	overlays.style.left = ((bounds.width-(videoWidth*videoScaleRatio))/2)-7+'px';
 
     // Adjusts the width of the viewer ;  Ajxustas la largxecon de la vidilo
     let scaledVideoWidth = videoWidth * videoScaleRatio;
     let scaledVideoWidthWithPadding = parseInt(scaledVideoWidth) + 60;
     let scaledVideoHeightWithPadding = parseInt(scaledVideoHeight) + 60;
-    viewerContainer.style = "width:" + scaledVideoWidthWithPadding + "px;height:" + scaledVideoHeightWithPadding + "px;";
+    viewerContainer.style = 'width:' + scaledVideoWidthWithPadding + 'px;height:' + scaledVideoHeightWithPadding + 'px;';
     viewer.width = videoWidth;
     viewer.height = videoHeight;
     overlays.width = videoWidth;
     overlays.height = videoHeight;
+	
+
+	// Redraws displayed frame if resize happens when not on live view ; Regesegnas la bildon se oni ne estas sur la tuja video
+	let currentFrame = parseInt(document.getElementById('currentFrame').innerHtml);
+	if (currentFrame!='NaN'){
+		Heron.camera.viewFrame(currentFrame);
+	}
+	
+	
+	Heron.camera.drawOverlays();
 }
 
 function switchVideoInput() {
-    const selectedInput = document.getElementById("videoDevice").value;
+    const selectedInput = document.getElementById('videoDevice').value;
     
     navigator.mediaDevices.enumerateDevices().then(function (devices) {
         devices.forEach(function (device) {
-            if (device.kind == "videoinput") { // Only video ; nur videaj
+            if (device.kind == 'videoinput') { // Only video ; nur videaj
                 if (device.deviceId == selectedInput)
                 {
                     selectVideoInput(device.deviceId, function() {
