@@ -108,19 +108,24 @@ class Camera {
 		
 		ctx.fillStyle = "#ffffff";
 		
+		let strokeWidth=2;
+		
+		let bounds = win.getBounds();		
+		if(bounds.height<=600){strokeWidth=5;}
+		
 		if (this.overlays.thirds==true) {
 			for(i=1;i<=this.overlays.columns;i++){
-				ctx.fillRect((this.width/this.overlays.columns)*i, 0, 1, this.height);
+				ctx.fillRect((this.width/this.overlays.columns)*i, 0, strokeWidth, this.height);
 			}
 			
 			for(i=1;i<=this.overlays.lines;i++){
-				ctx.fillRect(0, (this.height/this.overlays.lines)*i, this.width, 1);
+				ctx.fillRect(0, (this.height/this.overlays.lines)*i, this.width, strokeWidth);
 			}
 		}
 		
 		if (this.overlays.center==true) {
-			ctx.fillRect((this.width/2)-5, this.height/2, 12, 1);
-			ctx.fillRect(this.width/2, (this.height/2)-5, 1, 12);
+			ctx.fillRect((this.width/2)-5, this.height/2, 12, strokeWidth);
+			ctx.fillRect(this.width/2, (this.height/2)-5, strokeWidth, 12);
 		}
 		
 		if (this.overlays.margins==true) {

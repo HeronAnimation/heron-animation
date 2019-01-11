@@ -206,7 +206,6 @@ button:focus {
 /*    transition: width 0.1s ease-in-out, height 0.1s ease-in-out;*/
 }
 #viewerCanvas, #overlaysCanvas {
-    position: relative; 
 /*     top: -725px;*/
     float: left; 
     position: absolute; 
@@ -218,6 +217,7 @@ button:focus {
     transition: width 0.1s ease-in-out, height 0.1s ease-in-out;
 }
 #videoStream {
+	position: absolute;
     transition: width 0.1s ease-in-out, height 0.1s ease-in-out;
 }
 
