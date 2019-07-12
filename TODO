@@ -11,17 +11,12 @@ BUGS :
 	Multi suppression
 		Quand on supprime plusieurs photos, ça en supprime une de trop sur le disque OU UNE EN MOINS OU BUG
 		//Faire les images une à une, ne commencer que lorsque la précédente est supprimée
-// - Plein écran : décalage entre image live et photos prises
 
-
-
-- Entrée refait l'action du dernier bouton (ex diff) pareil pour les flèches dans la timeline -> supprimer l'action par défaut
-
-cadre noir par dessus l'image webcam au chargement ?
 
 Soucis avec le framerate de la vidéo exportée. -> ?
 La fin d'une animation pas toujours exportée dans la vidéo ?
-select de l'option de langue pas par défaut 
+
+select de l'option de langue pas par défaut (tous en fait)
 
 
 A FAIRE :

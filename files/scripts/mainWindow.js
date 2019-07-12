@@ -54,7 +54,7 @@ ipcRenderer.on('take:load', function(e, project){
 	document.getElementById('frameCount').innerHTML = 0;
 	Heron.project = project;
 	timeline.innerHTML='';
-	timeline.append(showStream);
+	timeline.appendChild(showStream);
 	changeFramerate(Heron.project.shots[Heron.project.activeShot].takes[Heron.project.activeTake].framerate);
 	
 	// Enable the play button if more than 2 frames
@@ -62,6 +62,7 @@ ipcRenderer.on('take:load', function(e, project){
 //	const frameCount = Object.keys(frames).length;
 	document.getElementById('play').disabled = false;
 	document.getElementById('take_pictures').disabled = false;
+    Heron.camera.showStream();
 });
 ipcRenderer.on('frame:load', function(e, frame){
 	Heron.camera.loadFrame(frame);
@@ -265,6 +266,12 @@ win.on('resize', function(){
 
 document.getElementById("buttonOverlays").addEventListener("click", toggleOverlaysPopup); 
 //document.getElementById("overlaysMenu").addEventListener("mouseleave", toggleOverlaysPopup); 
+
+document.getElementById("toolbar").addEventListener("keypress", function(e) {
+    if(e.keyCode === 13){
+       e.preventDefault();
+   }
+});
 
 /* SHORTCUTS */
 Mousetrap.bind('enter', function() {

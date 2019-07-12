@@ -98,7 +98,7 @@ function scaleViewer() {
         overlays.style.transformOrigin = 'left top';
     }
     else {
-        videoElement.style.transformOrigin = 'top';
+        videoElement.style.transformOrigin = 'left top';
         viewer.style.transformOrigin = 'left top';
         overlays.style.transformOrigin = 'left top';
     }
@@ -123,10 +123,12 @@ function scaleViewer() {
 	
 
 	// Redraws displayed frame if resize happens when not on live view ; Regesegnas la bildon se oni ne estas sur la tuja video
-	let currentFrame = parseInt(document.getElementById('currentFrame').innerHtml);
-	if (currentFrame!='NaN'){
+	let currentFrame = parseInt(document.getElementById('currentFrame').innerHTML);
+	if (currentFrame===parseInt(currentFrame, 10)){
 		Heron.camera.viewFrame(currentFrame);
-	}
+	} else {
+        Heron.camera.showStream();
+    }
 	
 	
 	Heron.camera.drawOverlays();
