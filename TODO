@@ -1,5 +1,4 @@
 
-Soucis avec le framerate de la vidéo exportée.
 
 
 
@@ -10,9 +9,21 @@ Soucis avec le framerate de la vidéo exportée.
 BUGS :
 - Multi selection (A verifier)
 	Multi suppression
-		Quand on supprime plusieurs photos, ça en supprime une de trop sur le disque
+		Quand on supprime plusieurs photos, ça en supprime une de trop sur le disque OU UNE EN MOINS OU BUG
 		//Faire les images une à une, ne commencer que lorsque la précédente est supprimée
 // - Plein écran : décalage entre image live et photos prises
+
+
+
+- Entrée refait l'action du dernier bouton (ex diff) pareil pour les flèches dans la timeline -> supprimer l'action par défaut
+
+
+- les guides ne marchent plus
+- pas d'auto incrémentation des plans/prises après 10
+
+Soucis avec le framerate de la vidéo exportée. -> ?
+La fin d'une animation pas toujours exportée dans la vidéo ?
+
 
 
 A FAIRE :
