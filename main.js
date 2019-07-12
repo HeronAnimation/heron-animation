@@ -445,7 +445,7 @@ function buildMenu() {
 		mainMenuTemplate.unshift({});
 	}
 	// Dev tools
-	/*
+	
 	if(process.env.NODE_ENV !== 'production'){
 		mainMenuTemplate.push({
 			label: 'DevTools',
@@ -462,7 +462,7 @@ function buildMenu() {
 				}
 			]
 		})
-	}*/
+	}
 
 
 	const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
@@ -621,13 +621,17 @@ function createShot(projectInfo) {
 		
 		
 		fs.mkdir(path.join(Heron.project.projectPath, Heron.project.projectName+'_'+shotNumberDisplay));
-		fs.mkdir(Heron.project.activeTakePath);
-		fs.mkdir(path.join(Heron.project.activeTakePath,'trash'));
-		
-		mainWindow.webContents.send('take:load', Heron.project);
-			
-		// Save json project file
+        
+        setTimeout(function() { // Delay so the folders are created
+            fs.mkdir(Heron.project.activeTakePath);
+            setTimeout(function() {
+                fs.mkdir(path.join(Heron.project.activeTakePath,'trash'));
+                mainWindow.webContents.send('take:load', Heron.project);
+                // Save json project file
 		saveJson();
+            }, 50);
+        }, 50);		
+		
 		
 	}else { // The shot exists : so does the take? 
 		if(Heron.project.shots[shotNumber].takes[takeNumber]==undefined) { // No : create the take
