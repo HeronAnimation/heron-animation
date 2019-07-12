@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 BUGS :
 - Multi selection (A verifier)
 	Multi suppression
@@ -15,8 +7,6 @@ BUGS :
 
 Soucis avec le framerate de la vidéo exportée. -> ?
 La fin d'une animation pas toujours exportée dans la vidéo ?
-
-select de l'option de langue pas par défaut (tous en fait)
 
 
 A FAIRE :

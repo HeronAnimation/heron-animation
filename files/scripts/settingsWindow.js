@@ -1,5 +1,4 @@
 ipcRenderer.on('language', function(e, language){
-	console.log(settings);
 	console.log(language);
 	document.getElementById('settingsLanguage').value = language;	
 });
