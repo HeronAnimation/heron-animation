@@ -17,13 +17,11 @@ BUGS :
 
 - Entrée refait l'action du dernier bouton (ex diff) pareil pour les flèches dans la timeline -> supprimer l'action par défaut
 
-
-- les guides ne marchent plus
-- pas d'auto incrémentation des plans/prises après 10
+cadre noir par dessus l'image webcam au chargement ?
 
 Soucis avec le framerate de la vidéo exportée. -> ?
 La fin d'une animation pas toujours exportée dans la vidéo ?
-
+select de l'option de langue pas par défaut 
 
 
 A FAIRE :
