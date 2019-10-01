@@ -360,61 +360,61 @@ Mousetrap.bind(['right','2'], function() {
 	}
 });
 // Undo
-Mousetrap.bind(['command+z', 'ctrl+z'], function() {
-	console.log(Heron.camera.history);
-	if(Heron.camera.history.length>0){
-		let i=Heron.camera.history.length-1;
-		let lastAction = undefined;
-		while(i>=0 && lastAction==undefined){
-			if(Heron.camera.history[i].undone==false){
-				lastAction = Heron.camera.history[i];
-			}
-			else {
-				i--;
-			}
-		}
-		if(lastAction!=undefined) {
-			if(lastAction.action=='newFrame'){
-				Heron.camera.deleteFrame(lastAction.id);
-				Heron.camera.history[i].undone=true;
-			}
-			else if(lastAction.action=='deleteFrame'){
-				console.log('laid'+lastAction.id);
-				let data = {imageData:lastAction.data, position:lastAction.id, undelete:true}
-				ipcRenderer.send('camera:newFrame', data);
-				Heron.camera.history[i].undone=true;
-			}
-		}
-	}
-	return false;
-});
-// Redo
-Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], function() {
-	console.log(Heron.camera.history);
-	if(Heron.camera.history.length>0){
-		let i=0;
-		let undone = false;
-		let actionToRedo=undefined;
-		while(i<=Heron.camera.history.length-1 && undone==false){
-			undone = Heron.camera.history[i].undone;
-			if(undone==true){
-				actionToRedo = Heron.camera.history[i];
-			}
-			else {
-				i++;
-			}
-		}
-		if(actionToRedo!=undefined) {
-			if(actionToRedo.action=='newFrame'){
-				let data = {imageData:actionToRedo.data}
-				ipcRenderer.send('camera:newFrame', actionToRedo.data);
-//				Heron.camera.addFrameToTimeline(actionToRedo.id,actionToRedo.data);
-				Heron.camera.history[i].undone=false;
-			}
-		}
-	}
-	return false;
-});
+//Mousetrap.bind(['command+z', 'ctrl+z'], function() {
+//	console.log(Heron.camera.history);
+//	if(Heron.camera.history.length>0){
+//		let i=Heron.camera.history.length-1;
+//		let lastAction = undefined;
+//		while(i>=0 && lastAction==undefined){
+//			if(Heron.camera.history[i].undone==false){
+//				lastAction = Heron.camera.history[i];
+//			}
+//			else {
+//				i--;
+//			}
+//		}
+//		if(lastAction!=undefined) {
+//			if(lastAction.action=='newFrame'){
+//				Heron.camera.deleteFrame(lastAction.id);
+//				Heron.camera.history[i].undone=true;
+//			}
+//			else if(lastAction.action=='deleteFrame'){
+//				console.log('laid'+lastAction.id);
+//				let data = {imageData:lastAction.data, position:lastAction.id, undelete:true}
+//				ipcRenderer.send('camera:newFrame', data);
+//				Heron.camera.history[i].undone=true;
+//			}
+//		}
+//	}
+//	return false;
+//});
+//// Redo
+//Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], function() {
+//	console.log(Heron.camera.history);
+//	if(Heron.camera.history.length>0){
+//		let i=0;
+//		let undone = false;
+//		let actionToRedo=undefined;
+//		while(i<=Heron.camera.history.length-1 && undone==false){
+//			undone = Heron.camera.history[i].undone;
+//			if(undone==true){
+//				actionToRedo = Heron.camera.history[i];
+//			}
+//			else {
+//				i++;
+//			}
+//		}
+//		if(actionToRedo!=undefined) {
+//			if(actionToRedo.action=='newFrame'){
+//				let data = {imageData:actionToRedo.data}
+//				ipcRenderer.send('camera:newFrame', actionToRedo.data);
+////				Heron.camera.addFrameToTimeline(actionToRedo.id,actionToRedo.data);
+//				Heron.camera.history[i].undone=false;
+//			}
+//		}
+//	}
+//	return false;
+//});
 
 Mousetrap.bind(['command+e', 'ctrl+e','command+m', 'ctrl+m'], function() {
 	ipcRenderer.send('window:export');

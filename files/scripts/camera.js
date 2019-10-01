@@ -95,7 +95,7 @@ class Camera {
 		let data = {imageData:imageData};
 		ipcRenderer.send('camera:newFrame', data);
 		
-		this.addToHistory('newFrame', frameNumber, imageData);
+//		this.addToHistory('newFrame', frameNumber, imageData);
 	}
 	
 	drawOverlays() {
@@ -265,6 +265,8 @@ class Camera {
 		
 		videoStreamElement.style.opacity = 1-parseFloat(document.getElementById('onionBlending').value);
 		
+        console.log(1-parseFloat(document.getElementById('onionBlending').value));
+        
 		if(Heron.camera.differenceMode==true){
 			videoStreamElement.classList.add('difference');
 			videoStreamElement.style.opacity=1;
@@ -414,13 +416,10 @@ class Camera {
 				selectedImageId = parseInt(selectedImageId.substring(6, selectedImageId.length));
 				let imageData={};
 				for(i=0;i<=selectedImage.length-1;i++){
-//					console.log(selectedImage);
-//					console.log(selectedImage[i]);
-					console.log(selectedImage[i].id);
-					console.log(i);
+                    
 					imageData[i] = {};
 					imageData[i].uniqueId = i+"_"+Math.random()*100000000000000000;
-					console.log(imageData.uniqueId);
+                    
 					let imageDataRaw = selectedImage[i].toDataURL('image/jpeg', 1.0);
 					imageData[i].data = imageDataRaw.substr(23,imageDataRaw.length);
 					console.log(imageData[i].data.substr(160,20));
@@ -435,7 +434,7 @@ class Camera {
 //					let imageData = document.getElementById('frame_'+selectedImageId).toDataURL('image/jpeg', 1.0);
 //					imageData = imageData.substr(23,imageData.length);
 
-					this.addToHistory('deleteFrame', selectedImageId, {data:imageData[i].data,uniqueId:imageData[i].uniqueId});
+					//this.addToHistory('deleteFrame', selectedImageId, {data:imageData[i].data,uniqueId:imageData[i].uniqueId});
 					
 					selectedImage[0].classList.remove('selected');
 					Heron.camera.deleteFrame(selectedImageId, imageData[i].uniqueId);
@@ -476,18 +475,18 @@ class Camera {
 		}
 	}
 	
-	addToHistory(action, id, data) {
-		if(Heron.camera.history.length>0){
-			let i=Heron.camera.history.length-1;
-			let undone = true;
-			while(i>=0 && undone==true){
-				undone = Heron.camera.history[i].undone;
-				if(undone==true){
-					Heron.camera.history.pop();
-					i--;
-				}
-			}
-		}
-		this.history.push({action:action, id:id, undone:false, data:data});
-	}
+//	addToHistory(action, id, data) {
+//		if(Heron.camera.history.length>0){
+//			let i=Heron.camera.history.length-1;
+//			let undone = true;
+//			while(i>=0 && undone==true){
+//				undone = Heron.camera.history[i].undone;
+//				if(undone==true){
+//					Heron.camera.history.pop();
+//					i--;
+//				}
+//			}
+//		}
+//		this.history.push({action:action, id:id, undone:false, data:data});
+//	}
 }
