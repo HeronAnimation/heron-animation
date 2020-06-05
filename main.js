@@ -14,8 +14,7 @@ process.env.NODE_ENV = 'development';
 //process.env.NODE_ENV = 'production';
 
 let Heron = {};
-//Heron.language = 'fr-FR'; // A faire : stocker la préférence utilisateur
-Heron.language = 'de-DE'; 
+Heron.language = 'fr-FR'; // A faire : stocker la préférence utilisateur
 Heron.windows = [];
 Heron.project = {};
 
