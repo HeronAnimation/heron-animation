@@ -1,3 +1,4 @@
+
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
@@ -13,7 +14,8 @@ process.env.NODE_ENV = 'development';
 //process.env.NODE_ENV = 'production';
 
 let Heron = {};
-Heron.language = 'fr-FR'; // A faire : stocker la préférence utilisateur
+//Heron.language = 'fr-FR'; // A faire : stocker la préférence utilisateur
+Heron.language = 'de-DE'; 
 Heron.windows = [];
 Heron.project = {};
 
@@ -400,22 +402,28 @@ function buildMenu() {
 		{
 			label: Heron.strings['menu_languages'],
 			submenu: [
-				{
+        {
 					label: 'English',
 					click() {
 						setLanguage('en-US');
+					}
+				},	
+        {
+					label: 'Français',
+					click() {
+						setLanguage('fr-FR');
+					}
+				},
+				{
+					label: 'Deutsch',
+					click() {
+						setLanguage('de-DE');
 					}
 				},
 				{
 					label: 'Esperanto',
 					click() {
 						setLanguage('eo');
-					}
-				},
-				{
-					label: 'Français',
-					click() {
-						setLanguage('fr-FR');
 					}
 				}
 			]
@@ -1316,3 +1324,4 @@ function removeDiacritics (str) {
     }
     return str;
 }
+
