@@ -1,3 +1,4 @@
+
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
@@ -400,22 +401,28 @@ function buildMenu() {
 		{
 			label: Heron.strings['menu_languages'],
 			submenu: [
-				{
+        {
 					label: 'English',
 					click() {
 						setLanguage('en-US');
+					}
+				},	
+        {
+					label: 'Français',
+					click() {
+						setLanguage('fr-FR');
+					}
+				},
+				{
+					label: 'Deutsch',
+					click() {
+						setLanguage('de-DE');
 					}
 				},
 				{
 					label: 'Esperanto',
 					click() {
 						setLanguage('eo');
-					}
-				},
-				{
-					label: 'Français',
-					click() {
-						setLanguage('fr-FR');
 					}
 				}
 			]
@@ -1316,3 +1323,4 @@ function removeDiacritics (str) {
     }
     return str;
 }
+
